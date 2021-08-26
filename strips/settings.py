@@ -3,7 +3,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-!tnzrbf&&jmha2f@bu+22ns%v#-ml@=w_7cl46vpgs40j8la^)')
+SECRET_KEY = os.environ.get("SECRET_KEY", None)
 
 STRIPS_API_SECRET = os.environ.get("STRIPS_API_SECRET", None)
 STRIPS_API_ENDPOINT = os.environ.get("STRIPS_API_ENDPOINT", "https://api.stripe.com/")
