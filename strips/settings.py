@@ -6,6 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-!tnzrbf&&jmha2f@bu+22ns%v#-ml@=w_7cl46vpgs40j8la^)')
 
 STRIPS_API_SECRET = os.environ.get("STRIPS_API_SECRET", None)
+STRIPS_API_ENDPOINT = os.environ.get("STRIPS_API_ENDPOINT", None)
 
 DEBUG = os.environ.get("DEBUG", True)
 
@@ -97,6 +98,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REDIS_HOST = os.environ.get("REDIS_HOST", 'localhost')
+REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
+REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD", '')
+REDIS_DB = os.environ.get("REDIS_DB", 0)
+REDIS_URI = f"redis://{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
+
+CELERY_BROKER_URL = REDIS_URI
+CELERY_RESULT_BACKEND = REDIS_URI
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 LANGUAGE_CODE = 'en-us'
 
